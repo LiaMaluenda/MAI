@@ -3,124 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuadernillo M-P-L-S - Vacaciones</title>
-    <!-- Frameworks -->
+    <title>Cuadernillo Pro M-P-L-S</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Schoolbell&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
-        :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --soft-bg: #f0faff;
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--soft-bg);
-            color: #333;
-        }
-
-        /* Estilos de Impresión */
+        :root { --primary: #FF6B6B; --secondary: #4ECDC4; --accent: #FFE66D; --soft-bg: #f8f9fa; }
+        body { font-family: 'Quicksand', sans-serif; background-color: var(--soft-bg); }
+        
         @media print {
             .no-print { display: none !important; }
-            body { background-color: white; }
-            .container { width: 100% !important; max-width: 100% !important; }
-            .card { border: 1px solid #ddd !important; break-inside: avoid; margin-bottom: 1.5rem; }
             .page-break { page-break-after: always; }
-            .header-box { background: #eee !important; color: black !important; border: 1px solid #000; }
+            .card-trabajo { border: 1px solid #ddd !important; break-inside: avoid; margin-bottom: 1cm; }
+            body { background-color: white; }
         }
 
-        /* Estilos Visuales Ludicos */
-        .header-box {
-            background: linear-gradient(135deg, var(--primary), #ff8787);
-            color: white;
-            padding: 40px 20px;
-            border-radius: 0 0 40px 40px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .header-box { 
+            background: linear-gradient(135deg, var(--primary), #ff8787); 
+            color: white; padding: 40px; border-radius: 0 0 40px 40px; 
+            box-shadow: 0 10px 30px rgba(255,107,107,0.3);
         }
 
-        .card-trabajo {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 20px;
-            padding: 20px;
-            height: 100%;
-            transition: all 0.3s ease;
+        .card-trabajo { 
+            background: white; border: 2px solid #eee; border-radius: 20px; 
+            padding: 20px; margin-bottom: 20px; transition: 0.3s;
         }
 
-        .card-trabajo:hover { border-color: var(--secondary); }
+        .linea { border-bottom: 2px dotted #ccc; height: 35px; margin-bottom: 10px; }
+        
+        .piramide { text-align: center; font-size: 1.5rem; line-height: 1.8; color: #444; }
 
-        .linea-caligrafia {
-            font-family: 'Schoolbell', cursive;
-            border-bottom: 2px dotted #aaa;
-            height: 40px;
-            margin-bottom: 10px;
+        .audio-btn { 
+            background: var(--accent); border: none; border-radius: 50%; 
+            width: 40px; height: 40px; box-shadow: 0 4px 0 #d4bc4d;
         }
 
-        .piramide-item {
-            font-size: 1.6rem;
-            line-height: 2;
-            text-align: center;
-            color: #444;
-        }
-
-        .audio-btn {
-            background: var(--accent);
-            border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 0 #e6cc5c;
-        }
-
-        .audio-btn:active { transform: translateY(4px); box-shadow: none; }
-
-        .btn-enviar {
-            background-color: var(--secondary);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: bold;
-        }
+        .btn-enviar { background: var(--secondary); color: white; border: none; font-weight: bold; border-radius: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container py-3">
-    <!-- CABECERA -->
-    <header class="header-box shadow">
-        <h1>🖍️ Mis Vacaciones Mágicas</h1>
-        <p class="fs-4">Aprendiendo con las letras: <strong>M - P - L - S</strong></p>
-        <div class="row mt-4 justify-content-center no-print">
+    <!-- IDENTIFICACIÓN -->
+    <header class="header-box text-center shadow mb-5">
+        <h1>🚀 Mi Aventura de Letras</h1>
+        <p class="fs-5">Cuadernillo de Vacaciones M - P - L - S</p>
+        <div class="row justify-content-center mt-4 no-print">
             <div class="col-md-6">
-                <input type="text" class="form-control text-center" placeholder="Escribe el nombre del alumno aquí">
+                <div class="bg-white p-3 rounded-4 shadow-sm text-dark">
+                    <label class="fw-bold text-primary">📝 Nombre del Estudiante:</label>
+                    <input type="text" id="nombre_global" class="form-control form-control-lg border-primary text-center" placeholder="Escribe tu nombre aquí">
+                    <small class="text-muted">Este nombre se usará para enviar tus tareas.</small>
+                </div>
             </div>
         </div>
-        <button class="btn btn-light mt-3 no-print fw-bold shadow-sm" onclick="window.print()">🖨️ Descargar Cuadernillo para Imprimir (PDF)</button>
+        <button class="btn btn-light mt-4 no-print fw-bold shadow-sm" onclick="window.print()">🖨️ Imprimir Cuadernillo Completo</button>
     </header>
 
-    <!-- SECCIÓN 1: ESCRITURA (10 EJERCICIOS) -->
-    <section id="escritura" class="mb-5">
-        <h2 class="text-danger mb-4">✍️ 1. Desafíos de Escritura</h2>
+    <!-- SECCIÓN 1: ESCRITURA -->
+    <section>
+        <h2 class="text-danger mb-4">✍️ 1. Escritura de Palabras</h2>
         <div class="row g-3">
             <script>
-                const palabrasEscritura = ["Mamá", "Papá", "Lupa", "Sapo", "Mula", "Pila", "Sopa", "Misa", "Pelo", "Lima"];
-                palabrasEscritura.forEach((pal, i) => {
-                    document.write(`
-                        <div class="col-md-6">
-                            <div class="card-trabajo shadow-sm">
-                                <h6>${i+1}. Practica la palabra: <strong>${pal}</strong></h6>
-                                <div class="linea-caligrafia"></div>
-                                <div class="linea-caligrafia"></div>
-                            </div>
-                        </div>
-                    `);
+                const palabrasEsc = ["Mesa", "Pila", "Sopa", "Lupa", "Mapa", "Pelo", "Suma", "Lima", "Mula", "Pala"];
+                palabrasEsc.forEach((p, i) => {
+                    document.write(`<div class="col-md-6"><div class="card-trabajo"><h5>${i+1}. Repite: <strong>${p}</strong></h5><div class="linea"></div><div class="linea"></div></div></div>`);
                 });
             </script>
         </div>
@@ -128,124 +76,120 @@
 
     <div class="page-break"></div>
 
-    <!-- SECCIÓN 2: LECTURA -->
-    <section id="lectura" class="mb-5">
-        <h2 class="text-success mb-4">📖 2. Lectura y Comprensión</h2>
+    <!-- SECCIÓN 2: LECTURA Y COMPRENSIÓN (5 Pirámides + 11 Preguntas) -->
+    <section>
+        <h2 class="text-success mb-4">📖 2. Lectura y Desafíos Mentales</h2>
         
-        <!-- Piramidales (5) -->
-        <h4 class="mb-3">🔺 Lectura Piramidal (Fluidez)</h4>
+        <h4>🔺 Fluidez Piramidal</h4>
         <div class="row g-3 mb-5">
             <script>
-                const piramides = [
-                    ["M", "Ma", "Mamá", "Mamá me ama"],
-                    ["P", "Pa", "Papá", "Papá me mima"],
-                    ["L", "La", "Lola", "Lola lee"],
-                    ["S", "Su", "Susi", "Susi asea"],
-                    ["M", "Mi", "Mimi", "Mimi pisa"]
-                ];
-                piramides.forEach(pir => {
-                    document.write(`
-                        <div class="col-md-4">
-                            <div class="card-trabajo piramide-item shadow-sm">
-                                ${pir.map(linea => `<div>${linea}</div>`).join('')}
-                            </div>
-                        </div>
-                    `);
-                });
+                const pira = [["M", "Ma", "Mamá"], ["P", "Pa", "Papá"], ["L", "La", "Lupa"], ["S", "Su", "Susi"], ["M", "Mi", "Mimi"]];
+                pira.forEach(p => document.write(`<div class="col-md-4"><div class="card-trabajo piramide shadow-sm">${p.join('<br>')}</div></div>`));
             </script>
         </div>
 
-        <!-- Comprensión (5) -->
-        <h4 class="mb-3">🧐 Comprensión de Lectura Literal</h4>
+        <h4>🧐 Comprensión y Lógica (11 Ejercicios)</h4>
         <div class="row g-3">
+            <!-- 5 Preguntas Literales Iniciales -->
             <script>
-                const comprension = [
-                    {f: "El sapo Pepe salta.", q: "¿Quién salta?"},
-                    {f: "La mula de Memo.", q: "¿De quién es la mula?"},
-                    {f: "Papá usa su lupa.", q: "¿Qué usa papá?"},
-                    {f: "Susi amasa la masa.", q: "¿Qué amasa Susi?"},
-                    {f: "Lulú pela la lima.", q: "¿Qué pela Lulú?"}
+                const cL = [
+                    {f: "El sapo salta al lodo.", q: "¿A dónde salta el sapo?"},
+                    {f: "Lola pela la lima.", q: "¿Qué pela Lola?"},
+                    {f: "Papá usa la pala.", q: "¿Qué usa papá?"},
+                    {f: "Susi amasa la masa.", q: "¿Quién amasa?"},
+                    {f: "Memo ama a mami.", q: "¿A quién ama Memo?"}
                 ];
-                comprension.forEach(c => {
-                    document.write(`
-                        <div class="col-md-6">
-                            <div class="card-trabajo">
-                                <p class="fs-5"><i>"${c.f}"</i></p>
-                                <label class="fw-bold">${c.q}</label>
-                                <input type="text" class="form-control border-0 border-bottom">
-                            </div>
-                        </div>
-                    `);
+                cL.forEach(c => document.write(`<div class="col-md-6"><div class="card-trabajo"><i>"${c.f}"</i><br><b>${c.q}</b><input type="text" class="form-control mt-2 border-0 border-bottom"></div></div>`));
+            </script>
+
+            <!-- 6 NUEVAS PREGUNTAS DE LÓGICA Y ESTRUCTURA -->
+            <div class="col-md-6">
+                <div class="card-trabajo bg-light">
+                    <b>6. Ordena la oración:</b> <br> "ama - me - mamá"
+                    <input type="text" class="form-control mt-2" placeholder="Escribe la oración correcta">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-trabajo bg-light">
+                    <b>7. Completa la palabra:</b> <br> "El S _ P _ vive en el agua."
+                    <input type="text" class="form-control mt-2" placeholder="Letras faltantes">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-trabajo bg-light">
+                    <b>8. ¿Cuál es un nombre de persona?</b> <br> (lima - Lulú - lupa)
+                    <input type="text" class="form-control mt-2" placeholder="Respuesta">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-trabajo bg-light">
+                    <b>9. ¿Qué rima con LUPA?</b> <br> (Pupa - Sapo - Mesa)
+                    <input type="text" class="form-control mt-2" placeholder="Respuesta">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-trabajo bg-light">
+                    <b>10. Plural:</b> <br> Si tengo uno es "Sapo", si tengo muchos son...
+                    <input type="text" class="form-control mt-2" placeholder="Respuesta">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-trabajo bg-light">
+                    <b>11. Silabeo:</b> <br> ¿Cuántas sílabas tiene PA-LO-MA?
+                    <input type="number" class="form-control mt-2" placeholder="Ej: 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- SECCIÓN 3: DICTADO -->
+    <section>
+        <h2 class="text-warning mb-4">👂 3. Dictado</h2>
+        <div class="row g-2">
+            <script>
+                const dics = ["Misa", "Pelo", "Suelo", "Paloma", "Suma", "Pala", "Mesa", "Solo", "Pila", "Susi"];
+                dics.forEach((d, i) => {
+                    document.write(`<div class="col-md-6"><div class="d-flex align-items-center bg-white p-3 border rounded shadow-sm">
+                        <button class="audio-btn no-print me-3" onclick="speak('${d}')">🔊</button>
+                        <span>${i+1}.</span><div class="flex-grow-1 linea ms-2"></div>
+                    </div></div>`);
                 });
+                function speak(t) { let msg = new SpeechSynthesisUtterance(t); msg.lang = 'es-ES'; window.speechSynthesis.speak(msg); }
             </script>
         </div>
     </section>
 
     <div class="page-break"></div>
 
-    <!-- SECCIÓN 3: DICTADO (10) -->
-    <section id="dictado" class="mb-5">
-        <h2 class="text-warning mb-4">👂 3. El Dictado Mágico</h2>
-        <div class="row g-3">
-            <script>
-                const palabrasDictado = ["Mesa", "Pila", "Solo", "Mapa", "Lupa", "Puma", "Sala", "Palo", "Misa", "Losa"];
-                palabrasDictado.forEach((pal, i) => {
-                    document.write(`
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center bg-white p-3 border rounded shadow-sm">
-                                <span class="badge bg-primary me-2">${i+1}</span>
-                                <button class="audio-btn no-print me-3" onclick="speak('${pal}')">🔊</button>
-                                <div class="flex-grow-1 linea-caligrafia"></div>
-                            </div>
-                        </div>
-                    `);
-                });
-                function speak(t) {
-                    let msg = new SpeechSynthesisUtterance(t);
-                    msg.lang = 'es-ES';
-                    window.speechSynthesis.speak(msg);
-                }
-            </script>
-        </div>
-    </section>
-
-    <div class="page-break"></div>
-
-    <!-- SECCIÓN 4: MONITOREO (CONEXIÓN GOOGLE FORM) -->
-    <section id="monitoreo">
-        <h2 class="text-info mb-4">📅 Monitoreo Diario de Vacaciones</h2>
-        <div class="card p-4 shadow border-info">
-            <p>Estimado apoderado, complete el avance diario. Se enviará un reporte automático al sistema.</p>
+    <!-- SECCIÓN 4: MONITOREO CON VINCULACIÓN AUTOMÁTICA -->
+    <section id="monitoreo" class="no-print">
+        <h2 class="text-info mb-4">📅 Monitoreo de Avance (Para Apoderados)</h2>
+        <div class="card p-4 shadow-lg border-info">
+            <p class="text-muted small text-center">Al presionar "Enviar Reporte", se enviará el avance de <b>forma automática</b> con el nombre del niño registrado arriba.</p>
             
-            <!-- Iframe para evitar que la página se recargue al enviar -->
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            <iframe name="f_hidden" id="f_hidden" style="display:none;"></iframe>
 
-            <table class="table table-bordered align-middle">
-                <thead class="table-info text-center">
-                    <tr>
-                        <th>Día</th>
-                        <th>¿Qué trabajó hoy?</th>
-                        <th>Estado de Logro</th>
-                        <th class="no-print">Enviar</th>
-                    </tr>
+            <table class="table align-middle text-center">
+                <thead class="table-info">
+                    <tr><th>Día</th><th>¿Qué letra practicó?</th><th>Logro</th><th>Acción</th></tr>
                 </thead>
                 <tbody>
                     <script>
                         for(let i=1; i<=10; i++){
                             document.write(`
                                 <tr>
-                                    <td class="text-center fw-bold">Día ${i}</td>
-                                    <td><input type="text" id="av_${i}" class="form-control" placeholder="Ej: Letra M - Escritura"></td>
+                                    <td class="fw-bold">Día ${i}</td>
+                                    <td><input type="text" id="progreso_${i}" class="form-control" placeholder="Ej: Letra M y P"></td>
                                     <td>
-                                        <select id="est_${i}" class="form-select">
+                                        <select id="logro_${i}" class="form-select">
                                             <option value="Logrado">Logrado ✅</option>
                                             <option value="En Proceso">En Proceso 💡</option>
-                                            <option value="Requiere Apoyo">Requiere Apoyo 🚩</option>
+                                            <option value="Reforzar">Reforzar 🚩</option>
                                         </select>
                                     </td>
-                                    <td class="no-print text-center">
-                                        <button class="btn btn-enviar btn-sm px-3" onclick="enviarReporte(${i})">Enviar</button>
-                                    </td>
+                                    <td><button class="btn btn-enviar px-4" onclick="enviarAlDocente(${i})">Enviar Reporte</button></td>
                                 </tr>
                             `);
                         }
@@ -256,44 +200,51 @@
     </section>
 </div>
 
-<!-- FORMULARIO OCULTO PARA GOOGLE FORMS -->
-<form id="googleForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfccyvVtJsnGiSLj4w0tDZ0TCr8XpXnv6kTk6Cum4m5RykaYQ/formResponse" method="POST" target="hidden_iframe" style="display: none;">
-    <input type="hidden" name="entry.238362512" id="input_dia">
-    <input type="hidden" name="entry.1659701906" id="input_avance">
-    <input type="hidden" name="entry.210185231" id="input_estado">
+<!-- FORMULARIO OCULTO CONFIGURADO -->
+<form id="form_google" action="https://docs.google.com/forms/d/e/1FAIpQLSfccyvVtJsnGiSLj4w0tDZ0TCr8XpXnv6kTk6Cum4m5RykaYQ/formResponse" method="POST" target="f_hidden" style="display: none;">
+    <input type="hidden" name="entry.238362512" id="id_nombre_dia"> <!-- Pregunta 1: Nombre + Día -->
+    <input type="hidden" name="entry.1659701906" id="id_avance">     <!-- Pregunta 2: Avance -->
+    <input type="hidden" name="entry.210185231" id="id_estado">     <!-- Pregunta 3: Estado -->
 </form>
 
 <script>
-    function enviarReporte(dia) {
-        const avanceValue = document.getElementById('av_' + dia).value;
-        const estadoValue = document.getElementById('est_' + dia).value;
+    function enviarAlDocente(numDia) {
+        const nombreAlumno = document.getElementById('nombre_global').value.trim();
+        const detalleAvance = document.getElementById('progreso_' + numDia).value.trim();
+        const estadoLogro = document.getElementById('logro_' + numDia).value;
 
-        if(avanceValue === "") {
-            Swal.fire('Atención', 'Por favor escribe qué trabajó el niño antes de enviar.', 'warning');
+        // 1. Validar nombre
+        if (nombreAlumno === "") {
+            Swal.fire({ icon: 'error', title: '¡Falta el nombre!', text: 'Por favor escribe el nombre del estudiante al inicio de la página.' });
+            window.scrollTo(0,0);
+            document.getElementById('nombre_global').focus();
             return;
         }
 
-        // Mapear datos al formulario oculto
-        document.getElementById('input_dia').value = "Día " + dia;
-        document.getElementById('input_avance').value = avanceValue;
-        document.getElementById('input_estado').value = estadoValue;
+        // 2. Validar campo de avance
+        if (detalleAvance === "") {
+            Swal.fire('Escribe el avance', 'Debes indicar qué actividad realizaron hoy.', 'info');
+            return;
+        }
 
-        // Enviar
-        document.getElementById('googleForm').submit();
+        // 3. Vincular datos automáticamente
+        document.getElementById('id_nombre_dia').value = nombreAlumno + " - Día " + numDia;
+        document.getElementById('id_avance').value = detalleAvance;
+        document.getElementById('id_estado').value = estadoLogro;
 
-        // Mostrar éxito
+        // 4. Enviar de forma silenciosa
+        document.getElementById('form_google').submit();
+
+        // 5. Mensaje de éxito lúdico
         Swal.fire({
-            title: '¡Buen trabajo!',
-            text: 'el mensaje ha sido entregado con exito',
             icon: 'success',
-            confirmButtonColor: '#4ECDC4'
+            title: '¡Súper!',
+            text: 'el mensaje ha sido entregado con exito',
+            timer: 3000,
+            showConfirmButton: false
         });
     }
 </script>
-
-<footer class="text-center py-5 no-print">
-    <p class="text-muted">Cuadernillo de Apoyo - Kagami Rin © 2024</p>
-</footer>
 
 </body>
 </html>

@@ -3,114 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Cuadernillo de Vacaciones - M, P, L, S</title>
+    <title>Cuadernillo M-P-L-S - Vacaciones</title>
+    <!-- Frameworks -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Schoolbell&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <style>
         :root {
             --primary: #FF6B6B;
             --secondary: #4ECDC4;
             --accent: #FFE66D;
-            --text: #2F2F2F;
+            --soft-bg: #f0faff;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: #f0f8ff;
-            color: var(--text);
+            background-color: var(--soft-bg);
+            color: #333;
         }
 
-        .no-print { display: block; }
-        
+        /* Estilos de Impresión */
         @media print {
             .no-print { display: none !important; }
-            .card { border: 1px solid #ddd !important; margin-bottom: 20px; break-inside: avoid; }
             body { background-color: white; }
-            .page-break { page-break-after: always; }
             .container { width: 100% !important; max-width: 100% !important; }
+            .card { border: 1px solid #ddd !important; break-inside: avoid; margin-bottom: 1.5rem; }
+            .page-break { page-break-after: always; }
+            .header-box { background: #eee !important; color: black !important; border: 1px solid #000; }
         }
 
+        /* Estilos Visuales Ludicos */
         .header-box {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #ff8787);
             color: white;
-            padding: 30px;
-            border-radius: 0 0 50px 50px;
-            margin-bottom: 30px;
+            padding: 40px 20px;
+            border-radius: 0 0 40px 40px;
             text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .card-lectura {
-            border: 3px dashed var(--secondary);
-            border-radius: 20px;
+        .card-trabajo {
             background: white;
-            transition: transform 0.2s;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 20px;
+            height: 100%;
+            transition: all 0.3s ease;
         }
 
-        .piramidal {
-            text-align: center;
-            font-size: 1.5rem;
-            line-height: 2;
-            letter-spacing: 2px;
-        }
+        .card-trabajo:hover { border-color: var(--secondary); }
 
-        .caligrafia {
-            font-family: 'Courier New', Courier, monospace;
-            border-bottom: 2px solid #ccc;
-            width: 100%;
-            display: inline-block;
+        .linea-caligrafia {
+            font-family: 'Schoolbell', cursive;
+            border-bottom: 2px dotted #aaa;
             height: 40px;
+            margin-bottom: 10px;
         }
 
-        .btn-ludico {
-            background-color: var(--secondary);
-            color: white;
-            border-radius: 25px;
-            border: none;
-            padding: 10px 20px;
-            font-weight: bold;
+        .piramide-item {
+            font-size: 1.6rem;
+            line-height: 2;
+            text-align: center;
+            color: #444;
         }
 
         .audio-btn {
             background: var(--accent);
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 0 #e6cc5c;
         }
 
-        .monitoreo-table th { background-color: var(--secondary); color: white; }
+        .audio-btn:active { transform: translateY(4px); box-shadow: none; }
+
+        .btn-enviar {
+            background-color: var(--secondary);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-<div class="container py-4">
-    <!-- Portada -->
-    <div class="header-box shadow">
+<div class="container py-3">
+    <!-- CABECERA -->
+    <header class="header-box shadow">
         <h1>🖍️ Mis Vacaciones Mágicas</h1>
-        <p class="fs-4">Aprendo las letras M - P - L - S</p>
+        <p class="fs-4">Aprendiendo con las letras: <strong>M - P - L - S</strong></p>
         <div class="row mt-4 justify-content-center no-print">
             <div class="col-md-6">
-                <input type="text" class="form-control form-control-lg text-center" placeholder="Escribe tu nombre aquí">
+                <input type="text" class="form-control text-center" placeholder="Escribe el nombre del alumno aquí">
             </div>
         </div>
-        <button class="btn btn-light mt-3 no-print" onclick="window.print()">🖨️ Descargar/Imprimir PDF</button>
-    </div>
+        <button class="btn btn-light mt-3 no-print fw-bold shadow-sm" onclick="window.print()">🖨️ Descargar Cuadernillo para Imprimir (PDF)</button>
+    </header>
 
     <!-- SECCIÓN 1: ESCRITURA (10 EJERCICIOS) -->
     <section id="escritura" class="mb-5">
-        <h2 class="text-primary mb-4">✍️ Sección 1: Desafíos de Escritura</h2>
-        <div class="row g-4">
-            <!-- Ejercicios generados dinámicamente -->
+        <h2 class="text-danger mb-4">✍️ 1. Desafíos de Escritura</h2>
+        <div class="row g-3">
             <script>
-                const palabras = ["Mamá", "Pipa", "Lupa", "Sapo", "Mula", "Pala", "Sopa", "Misa", "Pelo", "Lima"];
-                palabras.forEach((p, i) => {
+                const palabrasEscritura = ["Mamá", "Papá", "Lupa", "Sapo", "Mula", "Pila", "Sopa", "Misa", "Pelo", "Lima"];
+                palabrasEscritura.forEach((pal, i) => {
                     document.write(`
                         <div class="col-md-6">
-                            <div class="card card-lectura p-3">
-                                <h5>${i+1}. Escribe 3 veces la palabra: <strong>${p}</strong></h5>
-                                <div class="caligrafia mt-2"></div>
-                                <div class="caligrafia mt-2"></div>
-                                <div class="caligrafia mt-2"></div>
+                            <div class="card-trabajo shadow-sm">
+                                <h6>${i+1}. Practica la palabra: <strong>${pal}</strong></h6>
+                                <div class="linea-caligrafia"></div>
+                                <div class="linea-caligrafia"></div>
                             </div>
                         </div>
                     `);
@@ -121,25 +128,25 @@
 
     <div class="page-break"></div>
 
-    <!-- SECCIÓN 2: LECTURA (5 Piramidales + 5 Comprensión) -->
+    <!-- SECCIÓN 2: LECTURA -->
     <section id="lectura" class="mb-5">
-        <h2 class="text-success mb-4">📖 Sección 2: Lectura Ágil</h2>
+        <h2 class="text-success mb-4">📖 2. Lectura y Comprensión</h2>
         
-        <!-- Piramidales -->
-        <h3 class="mb-3">🔺 Lectura Piramidal</h3>
-        <div class="row g-4">
+        <!-- Piramidales (5) -->
+        <h4 class="mb-3">🔺 Lectura Piramidal (Fluidez)</h4>
+        <div class="row g-3 mb-5">
             <script>
                 const piramides = [
                     ["M", "Ma", "Mamá", "Mamá me ama"],
                     ["P", "Pa", "Papá", "Papá me mima"],
-                    ["L", "La", "Lola", "Lola lamió la lima"],
-                    ["S", "Su", "Susi", "Susi asea la mesa"],
-                    ["M", "Mi", "Mimi", "Mimi pisa la sal"]
+                    ["L", "La", "Lola", "Lola lee"],
+                    ["S", "Su", "Susi", "Susi asea"],
+                    ["M", "Mi", "Mimi", "Mimi pisa"]
                 ];
-                piramides.forEach((pir, i) => {
+                piramides.forEach(pir => {
                     document.write(`
                         <div class="col-md-4">
-                            <div class="card card-lectura p-3 piramidal">
+                            <div class="card-trabajo piramide-item shadow-sm">
                                 ${pir.map(linea => `<div>${linea}</div>`).join('')}
                             </div>
                         </div>
@@ -148,25 +155,23 @@
             </script>
         </div>
 
-        <div class="page-break"></div>
-
-        <!-- Comprensión Literal -->
-        <h3 class="mt-5 mb-3">🧐 Comprensión de Lectura</h3>
-        <div class="row g-4">
+        <!-- Comprensión (5) -->
+        <h4 class="mb-3">🧐 Comprensión de Lectura Literal</h4>
+        <div class="row g-3">
             <script>
                 const comprension = [
-                    {s: "El sapo Pepe salta a la loma.", q: "¿Quién salta?"},
-                    {s: "La mula de Memo es mala.", q: "¿De quién es la mula?"},
-                    {s: "Papá usa su pala y su lupa.", q: "¿Qué usa papá?"},
-                    {s: "Susi amasa la masa en la mesa.", q: "¿Dónde amasa Susi?"},
-                    {s: "Lulú pela la lima.", q: "¿Qué pela Lulú?"}
+                    {f: "El sapo Pepe salta.", q: "¿Quién salta?"},
+                    {f: "La mula de Memo.", q: "¿De quién es la mula?"},
+                    {f: "Papá usa su lupa.", q: "¿Qué usa papá?"},
+                    {f: "Susi amasa la masa.", q: "¿Qué amasa Susi?"},
+                    {f: "Lulú pela la lima.", q: "¿Qué pela Lulú?"}
                 ];
-                comprension.forEach((c, i) => {
+                comprension.forEach(c => {
                     document.write(`
-                        <div class="col-12">
-                            <div class="card card-lectura p-3">
-                                <p class="fs-5">"${c.s}"</p>
-                                <label><strong>${c.q}</strong></label>
+                        <div class="col-md-6">
+                            <div class="card-trabajo">
+                                <p class="fs-5"><i>"${c.f}"</i></p>
+                                <label class="fw-bold">${c.q}</label>
                                 <input type="text" class="form-control border-0 border-bottom">
                             </div>
                         </div>
@@ -178,20 +183,19 @@
 
     <div class="page-break"></div>
 
-    <!-- SECCIÓN 3: DICTADO (10 EJERCICIOS) -->
+    <!-- SECCIÓN 3: DICTADO (10) -->
     <section id="dictado" class="mb-5">
-        <h2 class="text-warning mb-4">👂 Sección 3: El Dictado Mágico</h2>
-        <div class="alert alert-info no-print">💡 En modo virtual, haz clic en el parlante para escuchar la palabra. En papel, el apoderado dicta las palabras: <i>Mesa, Pila, Solo, Mapa, Lupa, Puma, Sala, Palo, Misa, Losa.</i></div>
+        <h2 class="text-warning mb-4">👂 3. El Dictado Mágico</h2>
         <div class="row g-3">
             <script>
                 const palabrasDictado = ["Mesa", "Pila", "Solo", "Mapa", "Lupa", "Puma", "Sala", "Palo", "Misa", "Losa"];
                 palabrasDictado.forEach((pal, i) => {
                     document.write(`
                         <div class="col-md-6">
-                            <div class="d-flex align-items-center bg-white p-2 rounded shadow-sm border">
+                            <div class="d-flex align-items-center bg-white p-3 border rounded shadow-sm">
                                 <span class="badge bg-primary me-2">${i+1}</span>
-                                <button class="audio-btn no-print me-2" onclick="speak('${pal}')">🔊</button>
-                                <input type="text" class="form-control border-0" placeholder="Escribe aquí...">
+                                <button class="audio-btn no-print me-3" onclick="speak('${pal}')">🔊</button>
+                                <div class="flex-grow-1 linea-caligrafia"></div>
                             </div>
                         </div>
                     `);
@@ -207,54 +211,89 @@
 
     <div class="page-break"></div>
 
-    <!-- SECCIÓN 4: FICHA DE MONITOREO -->
+    <!-- SECCIÓN 4: MONITOREO (CONEXIÓN GOOGLE FORM) -->
     <section id="monitoreo">
-        <h2 class="text-danger mb-4">📅 Ruta de Logros (Para los Padres)</h2>
-        <div class="card p-4 shadow">
-            <p><strong>Ruta de Trabajo:</strong> Se recomienda realizar 1 ejercicio de cada sección por día durante 10 días de vacaciones.</p>
-            <table class="table table-bordered monitoreo-table text-center">
-                <thead>
+        <h2 class="text-info mb-4">📅 Monitoreo Diario de Vacaciones</h2>
+        <div class="card p-4 shadow border-info">
+            <p>Estimado apoderado, complete el avance diario. Se enviará un reporte automático al sistema.</p>
+            
+            <!-- Iframe para evitar que la página se recargue al enviar -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+            <table class="table table-bordered align-middle">
+                <thead class="table-info text-center">
                     <tr>
                         <th>Día</th>
-                        <th>¿Qué hicimos? (M-P-L-S)</th>
-                        <th>Estado</th>
-                        <th>Firma Apoderado</th>
+                        <th>¿Qué trabajó hoy?</th>
+                        <th>Estado de Logro</th>
+                        <th class="no-print">Enviar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <script>
-                        for(let d=1; d<=10; d++) {
+                        for(let i=1; i<=10; i++){
                             document.write(`
                                 <tr>
-                                    <td>Día ${d}</td>
-                                    <td><input type="text" class="form-control form-control-sm border-0"></td>
+                                    <td class="text-center fw-bold">Día ${i}</td>
+                                    <td><input type="text" id="av_${i}" class="form-control" placeholder="Ej: Letra M - Escritura"></td>
                                     <td>
-                                        <select class="form-select form-select-sm border-0">
-                                            <option>Logrado ✅</option>
-                                            <option>En proceso 💡</option>
-                                            <option>Para reforzar 🚩</option>
+                                        <select id="est_${i}" class="form-select">
+                                            <option value="Logrado">Logrado ✅</option>
+                                            <option value="En Proceso">En Proceso 💡</option>
+                                            <option value="Requiere Apoyo">Requiere Apoyo 🚩</option>
                                         </select>
                                     </td>
-                                    <td><div class="caligrafia" style="height:25px"></div></td>
+                                    <td class="no-print text-center">
+                                        <button class="btn btn-enviar btn-sm px-3" onclick="enviarReporte(${i})">Enviar</button>
+                                    </td>
                                 </tr>
                             `);
                         }
                     </script>
                 </tbody>
             </table>
-
-            <div class="mt-4">
-                <h5>📝 Comentario del Apoderado:</h5>
-                <textarea class="form-control" rows="4" placeholder="Escriba aquí sus observaciones sobre el avance del estudiante..."></textarea>
-            </div>
         </div>
     </section>
-
-    <footer class="text-center mt-5 no-print text-muted">
-        <p>Cuadernillo de Lectoescritura Nivel 1 - Hecho con ❤️ para aprender en vacaciones.</p>
-    </footer>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FORMULARIO OCULTO PARA GOOGLE FORMS -->
+<form id="googleForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfccyvVtJsnGiSLj4w0tDZ0TCr8XpXnv6kTk6Cum4m5RykaYQ/formResponse" method="POST" target="hidden_iframe" style="display: none;">
+    <input type="hidden" name="entry.238362512" id="input_dia">
+    <input type="hidden" name="entry.1659701906" id="input_avance">
+    <input type="hidden" name="entry.210185231" id="input_estado">
+</form>
+
+<script>
+    function enviarReporte(dia) {
+        const avanceValue = document.getElementById('av_' + dia).value;
+        const estadoValue = document.getElementById('est_' + dia).value;
+
+        if(avanceValue === "") {
+            Swal.fire('Atención', 'Por favor escribe qué trabajó el niño antes de enviar.', 'warning');
+            return;
+        }
+
+        // Mapear datos al formulario oculto
+        document.getElementById('input_dia').value = "Día " + dia;
+        document.getElementById('input_avance').value = avanceValue;
+        document.getElementById('input_estado').value = estadoValue;
+
+        // Enviar
+        document.getElementById('googleForm').submit();
+
+        // Mostrar éxito
+        Swal.fire({
+            title: '¡Buen trabajo!',
+            text: 'el mensaje ha sido entregado con exito',
+            icon: 'success',
+            confirmButtonColor: '#4ECDC4'
+        });
+    }
+</script>
+
+<footer class="text-center py-5 no-print">
+    <p class="text-muted">Cuadernillo de Apoyo - Kagami Rin © 2024</p>
+</footer>
+
 </body>
 </html>

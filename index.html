@@ -3,203 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuadernillo de Lectoescritura: M - P - L - S</title>
+    <title>Mi Cuadernillo de Vacaciones - M, P, L, S</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --text: #2F2F2F;
+        }
+
         body {
-            background-color: #f8f9fa;
-            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0f8ff;
+            color: var(--text);
         }
-        .booklet-container {
-            max-width: 800px;
-            margin: 0 auto;
+
+        .no-print { display: block; }
+        
+        @media print {
+            .no-print { display: none !important; }
+            .card { border: 1px solid #ddd !important; margin-bottom: 20px; break-inside: avoid; }
+            body { background-color: white; }
+            .page-break { page-break-after: always; }
+            .container { width: 100% !important; max-width: 100% !important; }
+        }
+
+        .header-box {
+            background-color: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .card-lectura {
+            border: 3px dashed var(--secondary);
+            border-radius: 20px;
             background: white;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
-        .page {
-            padding: 40px;
-            min-height: 1040px; /* Aproximación a A4 */
-            page-break-after: always;
-        }
-        .pyramid-text {
+
+        .piramidal {
             text-align: center;
             font-size: 1.5rem;
             line-height: 2;
-            letter-spacing: 5px;
+            letter-spacing: 2px;
         }
-        .writing-lines {
-            border-bottom: 2px dashed #ccc;
-            height: 40px;
-            margin-bottom: 20px;
+
+        .caligrafia {
+            font-family: 'Courier New', Courier, monospace;
+            border-bottom: 2px solid #ccc;
             width: 100%;
+            display: inline-block;
+            height: 40px;
         }
-        .interactive-element {
-            cursor: pointer;
-            transition: all 0.3s;
+
+        .btn-ludico {
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 25px;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
         }
-        .interactive-element:hover {
-            transform: scale(1.02);
+
+        .audio-btn {
+            background: var(--accent);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
         }
-        
-        /* Reglas específicas para impresión en PDF */
-        @media print {
-            body { background: none; }
-            .booklet-container { box-shadow: none; width: 100%; max-width: 100%; }
-            .no-print { display: none !important; }
-            .print-only { display: block !important; }
-            .page { padding: 0; min-height: auto; margin-bottom: 2cm; }
-            .writing-lines { border-bottom: 2px solid #000; }
-        }
-        .print-only { display: none; }
+
+        .monitoreo-table th { background-color: var(--secondary); color: white; }
     </style>
 </head>
 <body>
 
-<div class="booklet-container">
-
-    <div class="page d-flex flex-column justify-content-center align-items-center text-center">
-        <h1 class="display-3 text-primary fw-bold mb-4">Mi Cuadernillo de Vacaciones</h1>
-        <h2 class="text-secondary mb-5">Letras: M - P - L - S</h2>
-        <div class="w-75 text-start mt-5">
-            <p class="fs-4"><strong>Nombre:</strong> <span class="writing-lines d-inline-block w-75"></span></p>
-            <p class="fs-4"><strong>Curso:</strong> <span class="writing-lines d-inline-block w-75"></span></p>
+<div class="container py-4">
+    <!-- Portada -->
+    <div class="header-box shadow">
+        <h1>🖍️ Mis Vacaciones Mágicas</h1>
+        <p class="fs-4">Aprendo las letras M - P - L - S</p>
+        <div class="row mt-4 justify-content-center no-print">
+            <div class="col-md-6">
+                <input type="text" class="form-control form-control-lg text-center" placeholder="Escribe tu nombre aquí">
+            </div>
         </div>
-        <button class="btn btn-lg btn-success mt-5 no-print" onclick="window.print()">🖨️ Imprimir Cuadernillo en PDF</button>
+        <button class="btn btn-light mt-3 no-print" onclick="window.print()">🖨️ Descargar/Imprimir PDF</button>
     </div>
 
-    <div class="page">
-        <h2 class="text-center text-primary mb-4">Misión Diaria: Ruta de Trabajo</h2>
-        <p class="text-muted text-center mb-4">Instrucciones para el apoderado: Registre el progreso diario. En la versión digital puede marcar las casillas, en la versión impresa debe firmar y dejar sus observaciones.</p>
+    <!-- SECCIÓN 1: ESCRITURA (10 EJERCICIOS) -->
+    <section id="escritura" class="mb-5">
+        <h2 class="text-primary mb-4">✍️ Sección 1: Desafíos de Escritura</h2>
+        <div class="row g-4">
+            <!-- Ejercicios generados dinámicamente -->
+            <script>
+                const palabras = ["Mamá", "Pipa", "Lupa", "Sapo", "Mula", "Pala", "Sopa", "Misa", "Pelo", "Lima"];
+                palabras.forEach((p, i) => {
+                    document.write(`
+                        <div class="col-md-6">
+                            <div class="card card-lectura p-3">
+                                <h5>${i+1}. Escribe 3 veces la palabra: <strong>${p}</strong></h5>
+                                <div class="caligrafia mt-2"></div>
+                                <div class="caligrafia mt-2"></div>
+                                <div class="caligrafia mt-2"></div>
+                            </div>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- SECCIÓN 2: LECTURA (5 Piramidales + 5 Comprensión) -->
+    <section id="lectura" class="mb-5">
+        <h2 class="text-success mb-4">📖 Sección 2: Lectura Ágil</h2>
         
-        <table class="table table-bordered border-primary align-middle">
-            <thead class="table-primary text-center">
-                <tr>
-                    <th>Día</th>
-                    <th>Ruta de Trabajo</th>
-                    <th>Estado</th>
-                    <th>Observaciones del Apoderado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center fw-bold">Día 1</td>
-                    <td>1 Ejercicio de Escritura (M)<br>1 Lectura Piramidal</td>
-                    <td class="text-center no-print"><input type="checkbox" class="form-check-input fs-3"></td>
-                    <td class="print-only"></td>
-                    <td><textarea class="form-control no-print" rows="2"></textarea><div class="print-only"><br><br></div></td>
-                </tr>
-                <tr>
-                    <td class="text-center fw-bold">Día 2</td>
-                    <td>1 Comprensión Literal<br>1 Dictado (M - P)</td>
-                    <td class="text-center no-print"><input type="checkbox" class="form-check-input fs-3"></td>
-                    <td class="print-only"></td>
-                    <td><textarea class="form-control no-print" rows="2"></textarea><div class="print-only"><br><br></div></td>
-                </tr>
+        <!-- Piramidales -->
+        <h3 class="mb-3">🔺 Lectura Piramidal</h3>
+        <div class="row g-4">
+            <script>
+                const piramides = [
+                    ["M", "Ma", "Mamá", "Mamá me ama"],
+                    ["P", "Pa", "Papá", "Papá me mima"],
+                    ["L", "La", "Lola", "Lola lamió la lima"],
+                    ["S", "Su", "Susi", "Susi asea la mesa"],
+                    ["M", "Mi", "Mimi", "Mimi pisa la sal"]
+                ];
+                piramides.forEach((pir, i) => {
+                    document.write(`
+                        <div class="col-md-4">
+                            <div class="card card-lectura p-3 piramidal">
+                                ${pir.map(linea => `<div>${linea}</div>`).join('')}
+                            </div>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- Comprensión Literal -->
+        <h3 class="mt-5 mb-3">🧐 Comprensión de Lectura</h3>
+        <div class="row g-4">
+            <script>
+                const comprension = [
+                    {s: "El sapo Pepe salta a la loma.", q: "¿Quién salta?"},
+                    {s: "La mula de Memo es mala.", q: "¿De quién es la mula?"},
+                    {s: "Papá usa su pala y su lupa.", q: "¿Qué usa papá?"},
+                    {s: "Susi amasa la masa en la mesa.", q: "¿Dónde amasa Susi?"},
+                    {s: "Lulú pela la lima.", q: "¿Qué pela Lulú?"}
+                ];
+                comprension.forEach((c, i) => {
+                    document.write(`
+                        <div class="col-12">
+                            <div class="card card-lectura p-3">
+                                <p class="fs-5">"${c.s}"</p>
+                                <label><strong>${c.q}</strong></label>
+                                <input type="text" class="form-control border-0 border-bottom">
+                            </div>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- SECCIÓN 3: DICTADO (10 EJERCICIOS) -->
+    <section id="dictado" class="mb-5">
+        <h2 class="text-warning mb-4">👂 Sección 3: El Dictado Mágico</h2>
+        <div class="alert alert-info no-print">💡 En modo virtual, haz clic en el parlante para escuchar la palabra. En papel, el apoderado dicta las palabras: <i>Mesa, Pila, Solo, Mapa, Lupa, Puma, Sala, Palo, Misa, Losa.</i></div>
+        <div class="row g-3">
+            <script>
+                const palabrasDictado = ["Mesa", "Pila", "Solo", "Mapa", "Lupa", "Puma", "Sala", "Palo", "Misa", "Losa"];
+                palabrasDictado.forEach((pal, i) => {
+                    document.write(`
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center bg-white p-2 rounded shadow-sm border">
+                                <span class="badge bg-primary me-2">${i+1}</span>
+                                <button class="audio-btn no-print me-2" onclick="speak('${pal}')">🔊</button>
+                                <input type="text" class="form-control border-0" placeholder="Escribe aquí...">
+                            </div>
+                        </div>
+                    `);
+                });
+                function speak(t) {
+                    let msg = new SpeechSynthesisUtterance(t);
+                    msg.lang = 'es-ES';
+                    window.speechSynthesis.speak(msg);
+                }
+            </script>
+        </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- SECCIÓN 4: FICHA DE MONITOREO -->
+    <section id="monitoreo">
+        <h2 class="text-danger mb-4">📅 Ruta de Logros (Para los Padres)</h2>
+        <div class="card p-4 shadow">
+            <p><strong>Ruta de Trabajo:</strong> Se recomienda realizar 1 ejercicio de cada sección por día durante 10 días de vacaciones.</p>
+            <table class="table table-bordered monitoreo-table text-center">
+                <thead>
+                    <tr>
+                        <th>Día</th>
+                        <th>¿Qué hicimos? (M-P-L-S)</th>
+                        <th>Estado</th>
+                        <th>Firma Apoderado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        for(let d=1; d<=10; d++) {
+                            document.write(`
+                                <tr>
+                                    <td>Día ${d}</td>
+                                    <td><input type="text" class="form-control form-control-sm border-0"></td>
+                                    <td>
+                                        <select class="form-select form-select-sm border-0">
+                                            <option>Logrado ✅</option>
+                                            <option>En proceso 💡</option>
+                                            <option>Para reforzar 🚩</option>
+                                        </select>
+                                    </td>
+                                    <td><div class="caligrafia" style="height:25px"></div></td>
+                                </tr>
+                            `);
+                        }
+                    </script>
                 </tbody>
-        </table>
-    </div>
+            </table>
 
-    <div class="page">
-        <h3 class="text-success border-bottom border-success pb-2">1. Ejercicios de Escritura</h3>
-        <p class="fs-5">Repasa y escribe las sílabas con la letra <strong>M y P</strong>.</p>
-        
-        <div class="mt-4">
-            <div class="d-flex align-items-center mb-4">
-                <span class="fs-2 fw-bold text-primary me-4">ma</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-            <div class="d-flex align-items-center mb-4">
-                <span class="fs-2 fw-bold text-primary me-4">me</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-            <div class="d-flex align-items-center mb-4">
-                <span class="fs-2 fw-bold text-danger me-4">pa</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-            <div class="d-flex align-items-center mb-4">
-                <span class="fs-2 fw-bold text-danger me-4">pe</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-            
-            <p class="fs-5 mt-5">Escribe la oración completa:</p>
-            <p class="fs-3 text-center text-muted">mi mamá me mima.</p>
-            <div class="writing-lines mt-4"></div>
-            <div class="writing-lines mt-4"></div>
-        </div>
-    </div>
-
-    <div class="page">
-        <h3 class="text-info border-bottom border-info pb-2">2. Lectura Piramidal</h3>
-        <p class="fs-5 no-print">Toca cada línea cuando logres leerla para que cambie de color.</p>
-        
-        <div class="pyramid-container mt-5 p-4 border rounded bg-light interactive-element" id="piramide1">
-            <div class="pyramid-text" onclick="this.style.color='#0d6efd'">m</div>
-            <div class="pyramid-text" onclick="this.style.color='#0d6efd'">ma</div>
-            <div class="pyramid-text" onclick="this.style.color='#0d6efd'">ma pa</div>
-            <div class="pyramid-text" onclick="this.style.color='#0d6efd'">ma pa sa</div>
-            <div class="pyramid-text" onclick="this.style.color='#0d6efd'">mi ma pa sa la</div>
-        </div>
-    </div>
-
-    <div class="page">
-        <h3 class="text-warning border-bottom border-warning pb-2">3. Comprensión Literal</h3>
-        
-        <div class="card mt-4 mb-4 border-warning">
-            <div class="card-body fs-4 text-center">
-                Susi amasa la masa en la mesa.<br>
-                La masa es lisa.
+            <div class="mt-4">
+                <h5>📝 Comentario del Apoderado:</h5>
+                <textarea class="form-control" rows="4" placeholder="Escriba aquí sus observaciones sobre el avance del estudiante..."></textarea>
             </div>
         </div>
+    </section>
 
-        <div class="mt-4">
-            <p class="fs-5 fw-bold">¿Quién amasa la masa?</p>
-            <div class="no-print d-flex gap-3 mb-4">
-                <button class="btn btn-outline-primary" onclick="alert('¡Intenta de nuevo!')">La mula</button>
-                <button class="btn btn-outline-success" onclick="alert('¡Correcto!')">Susi</button>
-                <button class="btn btn-outline-primary" onclick="alert('¡Intenta de nuevo!')">Mamá</button>
-            </div>
-            <div class="print-only writing-lines mt-4"></div>
-
-            <p class="fs-5 fw-bold mt-4">¿Cómo es la masa?</p>
-            <div class="no-print d-flex gap-3">
-                <button class="btn btn-outline-success" onclick="alert('¡Correcto!')">Lisa</button>
-                <button class="btn btn-outline-primary" onclick="alert('¡Intenta de nuevo!')">Mala</button>
-            </div>
-            <div class="print-only writing-lines mt-4"></div>
-        </div>
-    </div>
-
-    <div class="page">
-        <h3 class="text-danger border-bottom border-danger pb-2">4. Dictados</h3>
-        <p class="fs-5 text-muted">Apoderado: Dicte las siguientes palabras. En modo digital, presione el botón para revelar las palabras ocultas.</p>
-        
-        <div class="no-print mb-4 text-center">
-            <button class="btn btn-danger" onclick="document.getElementById('palabras-dictado-1').classList.toggle('d-none')">Mostrar / Ocultar Palabras a Dictar</button>
-            <div id="palabras-dictado-1" class="d-none mt-3 p-3 bg-light border rounded fs-4">
-                1. lupa &nbsp;&nbsp; 2. sapo &nbsp;&nbsp; 3. mapa &nbsp;&nbsp; 4. sol
-            </div>
-        </div>
-
-        <div class="mt-5">
-            <div class="d-flex align-items-center mb-5">
-                <span class="fs-4 fw-bold me-3">1.</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-            <div class="d-flex align-items-center mb-5">
-                <span class="fs-4 fw-bold me-3">2.</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-            <div class="d-flex align-items-center mb-5">
-                <span class="fs-4 fw-bold me-3">3.</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-            <div class="d-flex align-items-center mb-5">
-                <span class="fs-4 fw-bold me-3">4.</span>
-                <div class="writing-lines flex-grow-1"></div>
-            </div>
-        </div>
-    </div>
-
+    <footer class="text-center mt-5 no-print text-muted">
+        <p>Cuadernillo de Lectoescritura Nivel 1 - Hecho con ❤️ para aprender en vacaciones.</p>
+    </footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
